@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00AEFF</color>
+    <color name="colorPrimaryDark">#0692D1</color>
+    <color name="colorAccent">#ECA520</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="black_60_transparent">#96000000</color>
+    <color name="black_80_transparent">#CD000000</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="gradientStart">#716aca</color>
+    <color name="gradientCenter">#645BDA</color>
+    <color name="gradientEnd">#36a3f7</color>
+
+    <color name="gradientDashboardStart">#00BCB6</color>
+    <color name="gradientDashboardCenter">#00CEA0</color>
+    <color name="gradientDashboardEnd">#00E290</color>
+
+    <color name="gradientOrangeStart">#ECA520</color>
+    <color name="gradientOrangeCenter">#EEB447</color>
+    <color name="gradientOrangeEnd">#FECA67</color>
+
+    <color name="gradientDarkOrangeStart">#F26901</color>
+    <color name="gradientDarkOrangeCenter">#FF9C00</color>
+    <color name="gradientDarkOrangeEnd">#FFB607</color>
+
+    <color name="gradient1ColorStart">#728DC9</color>
+    <color name="gradient1ColorCenter">#7369B9</color>
+    <color name="gradient1ColorEnd">#7D65A4</color>
+
+</resources>

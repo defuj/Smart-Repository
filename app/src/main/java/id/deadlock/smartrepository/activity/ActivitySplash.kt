@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.dataCache
 
-class ActivitysSplash : AppCompatActivity() {
+class ActivitySplash : AppCompatActivity() {
     private var cache : SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +20,10 @@ class ActivitysSplash : AppCompatActivity() {
 
         object : CountDownTimer(3000,1000){
             override fun onFinish() {
-                if(cache!!.getBoolean(dataCache.logged,false)){
-                    startActivity(Intent(this@ActivitysSplash,ActivityHome::class.java))
+                if(cache!!.getBoolean(dataCache.show_login,true)){
+                    startActivity(Intent(this@ActivitySplash,ActivitySign::class.java))
                 }else{
-                    startActivity(Intent(this@ActivitysSplash,ActivitySign::class.java))
+                    startActivity(Intent(this@ActivitySplash,ActivityHome::class.java))
                 }
             }
 

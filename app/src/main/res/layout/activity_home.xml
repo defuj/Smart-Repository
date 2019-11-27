@@ -4,6 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ActivityHome">
-
+    tools:context=".activity.ActivityHome"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <id.deadlock.smartrepository.adapter.NonSwipeableViewPager
+            android:id="@+id/pagerHome"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:itemIconTint="@drawable/tab_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bottom_nav"
+            app:itemTextColor="@color/black_80_transparent"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

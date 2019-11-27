@@ -24,19 +24,24 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
-        <activity android:name=".activity.sign.ActivitySignIn"></activity>
+        <activity
+            android:name=".activity.ActivityInputVerificationCode"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Full"/>
         <activity
             android:name=".activity.ActivityHome"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.ActivityRegister"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Full" />
         <activity
             android:name=".activity.ActivitySign"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Full" />
         <activity
-            android:name=".activity.ActivitysSplash"
+            android:name=".activity.ActivitySignUp"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Full" />
+        <activity
+            android:name=".activity.ActivitySplash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ActivityInputVerificationCode"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_close" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Masukan Kode Verifikasi"
+                android:textColor="@color/black_80_transparent"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editKodeVerifikasi"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_form_sign"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Kode Verifikasi"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btnVerifikasiAkun"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_gradient"
+                android:text="Verfikasi Akun"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtBackToSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:text="Kembali ke halaman masuk."
+                android:textColor="@color/black_60_transparent"
+                android:textSize="12sp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <!-- style="?android:attr/borderlessButtonStyle" -->
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,15 @@
 package id.deadlock.smartrepository.fragment
 
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,13 +17,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityHome
+import id.deadlock.smartrepository.activity.ActivitySign
 import id.deadlock.smartrepository.adapter.adapterContentDashboard.AdapterListDashboard
+import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListDashboard
 
 /**
  * A simple [Fragment] subclass.
  */
 class FragmentAkunAdmin : Fragment() {
+    private var cache : SharedPreferences? = null
     private var toolbar: Toolbar? = null
     private var refresh : SwipeRefreshLayout? = null
     private var recyclerViewDashboard : RecyclerView? = null
@@ -35,6 +41,7 @@ class FragmentAkunAdmin : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        cache = activity!!.getSharedPreferences(dataCache.CACHE,0)
         toolbar = activity!!.findViewById(R.id.toolbarAkunAdmin)
         refresh = activity!!.findViewById(R.id.refreshAkunAdmin)
         recyclerViewDashboard = activity!!.findViewById(R.id.recyclerDasboard)
@@ -56,12 +63,29 @@ class FragmentAkunAdmin : Fragment() {
         }
         toolbar!!.setOnMenuItemClickListener {
             when(it.itemId){
-                R.id.menu_keluar-> Toast.makeText(activity,"Keluar", Toast.LENGTH_SHORT).show()
+                R.id.menu_keluar-> keluar()
                 R.id.menu_ganti_sandi-> Toast.makeText(activity,"Mengganti", Toast.LENGTH_SHORT).show()
             }
             true
         }
         loadArtikel()
+    }
+
+    private fun keluar(){
+        val dialogBuilder = AlertDialog.Builder(activity!!)
+        dialogBuilder.setMessage("Apakah Anda ingin keluar dari akun?")
+        dialogBuilder.setPositiveButton("Ya") { _, _ ->
+            val editor = cache!!.edit()
+            editor.clear()
+            editor.apply()
+
+            startActivity(Intent(activity,ActivitySign::class.java))
+        }
+        dialogBuilder.setNegativeButton("Tidak") { _, _ ->
+
+        }
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 
     private fun loadArtikel(){

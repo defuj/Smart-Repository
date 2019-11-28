@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:background="@color/white"
+        android:layout_height="100dp"
+        android:background="?android:attr/selectableItemBackground"
         app:contentInsetStart="0dp"
-        app:menu="@menu/menu_content_favorite">
+        app:menu="@menu/menu_content_favorite"
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,11 +23,12 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="80dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:background="@color/black_overlay"
-                app:srcCompat="@drawable/gallery_vector" />
+                app:srcCompat="@drawable/gallery_vector"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -31,16 +36,17 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:paddingStart="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="2"
-                    android:text="Judul Lengkap Artikel atau Karya Tulis Mahasiswa"
+                    android:text="Judul Lengkap dari Artikel atau Karya Tulis Mahasiswa/Dosen/STMIK Sumedang"
                     android:textColor="@color/black_80_transparent"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,16 +67,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:maxLines="2"
-                    android:text="Pengarang : "
-                    android:textColor="@color/black_80_transparent"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:maxLines="2"
-                    android:text="Tahun Terbit : "
+                    android:text="Nama Penulis"
                     android:textColor="@color/black_80_transparent"
                     android:textSize="12sp" />
 
@@ -78,7 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="bottom"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -122,10 +120,4 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignBottom="@id/toolbar2"
-        android:background="?android:attr/listDivider" />
 </RelativeLayout>

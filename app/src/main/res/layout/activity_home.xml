@@ -23,6 +23,7 @@
             app:itemIconTint="@drawable/tab_selector"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom_nav"
-            app:itemTextColor="@color/black_80_transparent"/>
+            app:elevation="6dp"
+            app:itemTextColor="@drawable/tab_selector"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

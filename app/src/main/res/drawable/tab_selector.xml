@@ -4,6 +4,6 @@
         android:color="@color/gradientStart"
         android:state_checked="true" />
     <item
-        android:color="@color/black_80_transparent"
+        android:color="#686868"
         android:state_checked="false"/>
 </selector>

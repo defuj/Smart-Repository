@@ -14,7 +14,7 @@ class AdapterListTerbaru (private val context: Context, private val rekomendasi:
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_1, null)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_3, null)
         return ViewHolder(v)
     }
 

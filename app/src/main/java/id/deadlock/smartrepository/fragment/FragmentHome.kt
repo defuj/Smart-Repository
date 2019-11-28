@@ -6,6 +6,9 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -37,6 +40,13 @@ class FragmentHome : Fragment() {
 
     private var toolbar : Toolbar? = null
 
+    private var menuCari : TextView? = null
+    private var menuNotif : ImageButton? = null
+    private var menuJurnal : ImageView? = null
+    private var menuSkripsi : ImageView? = null
+    private var menuTa : ImageView? = null
+    private var menuStmik : ImageView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +60,13 @@ class FragmentHome : Fragment() {
     }
 
     private fun initial() {
+        menuCari = activity!!.findViewById(R.id.menu_cari)
+        menuNotif = activity!!.findViewById(R.id.menu_notif)
+        menuJurnal = activity!!.findViewById(R.id.menu_jurnal)
+        menuSkripsi = activity!!.findViewById(R.id.menu_skripsi)
+        menuTa = activity!!.findViewById(R.id.menu_ta)
+        menuStmik = activity!!.findViewById(R.id.menu_stmik)
+
         toolbar = activity!!.findViewById(R.id.toolbarHome)
         refresh = activity!!.findViewById(R.id.refreshHome)
         recyclerViewPopular = activity!!.findViewById(R.id.recyclerPopular)
@@ -60,6 +77,25 @@ class FragmentHome : Fragment() {
     }
 
     private fun runFunction() {
+        menuCari!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+        menuNotif!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+        menuJurnal!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+        menuSkripsi!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+        menuTa!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+        menuStmik!!.setOnClickListener {
+            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+        }
+
         refresh!!.setOnRefreshListener {
             val timer = object: CountDownTimer(2000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
@@ -91,9 +127,9 @@ class FragmentHome : Fragment() {
     private fun loadListTerbaru() {
         terbaru = ArrayList()
         terbaru!!.clear()
-        recyclerViewTerbaru!!.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+        recyclerViewTerbaru!!.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
 
-        for(i in 0 until 12){
+        for(i in 0 until 6){
             val modelTerbaru = ModelListTerbaru
             modelTerbaru.judul = ""
             terbaru!!.add(modelTerbaru)

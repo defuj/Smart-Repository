@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:background="?android:attr/selectableItemBackground"
         app:contentInsetStart="0dp"
         app:menu="@menu/menu_content_favorite"
@@ -36,16 +36,15 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:paddingStart="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="sans-serif-light"
                     android:maxLines="2"
                     android:text="Judul Lengkap dari Artikel atau Karya Tulis Mahasiswa/Dosen/STMIK Sumedang"
-                    android:textColor="@color/black_80_transparent"
+                    android:textColor="@android:color/black"
                     android:textSize="14sp" />
 
                 <TextView
@@ -69,7 +68,8 @@
                     android:maxLines="2"
                     android:text="Nama Penulis"
                     android:textColor="@color/black_80_transparent"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

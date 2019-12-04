@@ -39,7 +39,17 @@ class ActivityHome : AppCompatActivity() {
             when (it.itemId) {
                 R.id.menu_home -> viewPager!!.setCurrentItem(0,false)
                 R.id.menu_history -> viewPager!!.setCurrentItem(1,false)
-                R.id.menu_favorite -> viewPager!!.setCurrentItem(2,false)
+                R.id.menu_favorite -> {
+                    if(cache!!.getBoolean(dataCache.logged,false)){
+                        if(cache!!.getBoolean(dataCache.status_akun,false)){
+                            viewPager!!.setCurrentItem(2,false)
+                        }else{
+                            startActivity(Intent(this@ActivityHome,ActivityInputVerificationCode::class.java))
+                        }
+                    }else{
+                        startActivity(Intent(this@ActivityHome,ActivitySign::class.java))
+                    }
+                }
                 else -> {
                     if(cache!!.getBoolean(dataCache.logged,false)){
                         if(cache!!.getBoolean(dataCache.status_akun,false)){

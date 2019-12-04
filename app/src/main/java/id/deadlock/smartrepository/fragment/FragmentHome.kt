@@ -1,6 +1,7 @@
 package id.deadlock.smartrepository.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
+import id.deadlock.smartrepository.activity.ActivityCari
 import id.deadlock.smartrepository.activity.ActivityHome
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListPopular
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListRekomendasi
@@ -78,7 +80,8 @@ class FragmentHome : Fragment() {
 
     private fun runFunction() {
         menuCari!!.setOnClickListener {
-            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(activity,ActivityCari::class.java))
         }
         menuNotif!!.setOnClickListener {
             Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()

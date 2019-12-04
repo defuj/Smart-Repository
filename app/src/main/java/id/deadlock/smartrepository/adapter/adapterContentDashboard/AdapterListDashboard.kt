@@ -2,6 +2,7 @@ package id.deadlock.smartrepository.adapter.adapterContentDashboard
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import id.deadlock.smartrepository.R
+import id.deadlock.smartrepository.activity.ActivityBacaArtikel
 import id.deadlock.smartrepository.model.ModelListDashboard
 
 class AdapterListDashboard (private val context: Context, private val dashboard: ArrayList<ModelListDashboard>) :
@@ -34,6 +36,10 @@ class AdapterListDashboard (private val context: Context, private val dashboard:
                 }
             }
             true
+        }
+
+        holder.toolbar.setOnClickListener {
+            context.startActivity(Intent(context, ActivityBacaArtikel::class.java))
         }
     }
 

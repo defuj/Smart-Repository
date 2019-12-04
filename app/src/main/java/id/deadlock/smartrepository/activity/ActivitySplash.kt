@@ -18,7 +18,7 @@ class ActivitySplash : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         cache = getSharedPreferences(dataCache.CACHE,0)
 
-        object : CountDownTimer(3000,1000){
+        object : CountDownTimer(2000,1000){
             override fun onFinish() {
                 if(cache!!.getBoolean(dataCache.show_login,true)){
                     startActivity(Intent(this@ActivitySplash,ActivitySign::class.java))

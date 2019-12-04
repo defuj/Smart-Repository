@@ -2,6 +2,7 @@ package id.deadlock.smartrepository.adapter.adapterContentHistory
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import id.deadlock.smartrepository.R
+import id.deadlock.smartrepository.activity.ActivityBacaArtikel
 import id.deadlock.smartrepository.model.ModelListHistory
 
 class AdapterListHistory (private val context: Context, private val history: ArrayList<ModelListHistory>) :
@@ -36,6 +38,10 @@ class AdapterListHistory (private val context: Context, private val history: Arr
                 R.id.menu_favorite -> Toast.makeText(context,"Menambahkan ke Favorite",Toast.LENGTH_SHORT).show()
             }
             true
+        }
+
+        holder.toolbar.setOnClickListener {
+            context.startActivity(Intent(context, ActivityBacaArtikel::class.java))
         }
     }
 

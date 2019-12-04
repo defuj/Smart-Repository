@@ -8,6 +8,7 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
@@ -18,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityHome
 import id.deadlock.smartrepository.activity.ActivitySign
+import id.deadlock.smartrepository.activity.ActivityUpload
 import id.deadlock.smartrepository.adapter.adapterContentDashboard.AdapterListDashboard
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListDashboard
@@ -31,6 +33,7 @@ class FragmentAkunAdmin : Fragment() {
     private var refresh : SwipeRefreshLayout? = null
     private var recyclerViewDashboard : RecyclerView? = null
     private var artikel: ArrayList<ModelListDashboard>? = null
+    private var upload : LinearLayout?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +48,7 @@ class FragmentAkunAdmin : Fragment() {
         toolbar = activity!!.findViewById(R.id.toolbarAkunAdmin)
         refresh = activity!!.findViewById(R.id.refreshAkunAdmin)
         recyclerViewDashboard = activity!!.findViewById(R.id.recyclerDasboard)
+        upload = activity!!.findViewById(R.id.layoutBtnUpload)
         runFunction()
     }
 
@@ -68,6 +72,11 @@ class FragmentAkunAdmin : Fragment() {
             }
             true
         }
+
+        upload!!.setOnClickListener {
+            startActivity(Intent(activity,ActivityUpload::class.java))
+        }
+
         loadArtikel()
     }
 

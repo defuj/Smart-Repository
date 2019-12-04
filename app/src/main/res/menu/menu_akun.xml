@@ -2,10 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="Keluar"
-        android:id="@+id/menu_keluar"/>
-
+        android:icon="@drawable/ic_feedback"
+        android:title="Pengaturan Akun"
+        android:id="@+id/menu_messege"
+        app:showAsAction="always"
+        android:visible="false"/>
+    <item
+        android:icon="@drawable/ic_notifications_none"
+        android:title="Pemberitahuan"
+        android:id="@+id/menu_notif"
+        app:showAsAction="ifRoom" />
     <item
         android:title="Ubah Kata Sandi"
-        android:id="@+id/menu_ganti_sandi"/>
+        android:id="@+id/menu_ganti_sandi"
+        android:visible="true"/>
+
+    <item
+        android:title="Keluar"
+        android:id="@+id/menu_keluar"/>
 </menu>

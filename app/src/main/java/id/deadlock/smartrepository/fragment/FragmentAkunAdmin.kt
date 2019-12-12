@@ -20,6 +20,7 @@ import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityHome
 import id.deadlock.smartrepository.activity.ActivitySign
 import id.deadlock.smartrepository.activity.ActivityUpload
+import id.deadlock.smartrepository.activity.ActivityVerfikasiAkun
 import id.deadlock.smartrepository.adapter.adapterContentDashboard.AdapterListDashboard
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListDashboard
@@ -34,6 +35,7 @@ class FragmentAkunAdmin : Fragment() {
     private var recyclerViewDashboard : RecyclerView? = null
     private var artikel: ArrayList<ModelListDashboard>? = null
     private var upload : LinearLayout?= null
+    private var verifikasiAkun : LinearLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +51,7 @@ class FragmentAkunAdmin : Fragment() {
         refresh = activity!!.findViewById(R.id.refreshAkunAdmin)
         recyclerViewDashboard = activity!!.findViewById(R.id.recyclerDasboard)
         upload = activity!!.findViewById(R.id.layoutBtnUpload)
+        verifikasiAkun = activity!!.findViewById(R.id.layoutBtnVerifikasiAkun)
         runFunction()
     }
 
@@ -75,6 +78,10 @@ class FragmentAkunAdmin : Fragment() {
 
         upload!!.setOnClickListener {
             startActivity(Intent(activity,ActivityUpload::class.java))
+        }
+
+        verifikasiAkun!!.setOnClickListener {
+            startActivity(Intent(activity,ActivityVerfikasiAkun::class.java))
         }
 
         loadArtikel()

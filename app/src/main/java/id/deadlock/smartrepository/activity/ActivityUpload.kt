@@ -105,9 +105,13 @@ class ActivityUpload : AppCompatActivity() {
     private fun showJenisDokumen() {
         val spinnerArray = ArrayList<String>()
         spinnerArray.clear()
-        spinnerArray.add("Artikel")
-        spinnerArray.add("Skripsi")
-        spinnerArray.add("Tugas Akhir")
+        if(cache!!.getString(dataCache.akses,"user") == "admin"){
+            spinnerArray.add("Artikel")
+            spinnerArray.add("Skripsi")
+            spinnerArray.add("Tugas Akhir")
+        }else{
+            spinnerArray.add("Artikel")
+        }
 
         val adapter = ArrayAdapter(this@ActivityUpload,
             android.R.layout.simple_spinner_item, spinnerArray)

@@ -6,8 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityBacaArtikel
@@ -28,25 +26,13 @@ class AdapterListHistory (private val context: Context, private val history: Arr
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.toolbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.menu_hapus -> {
-                    Toast.makeText(context,"Menghapus dari daftar",Toast.LENGTH_SHORT).show()
-                    notifyItemRemoved(position)
-                    notifyItemChanged(position,history.size)
-                }
-                R.id.menu_favorite -> Toast.makeText(context,"Menambahkan ke Favorite",Toast.LENGTH_SHORT).show()
-            }
-            true
-        }
-
-        holder.toolbar.setOnClickListener {
+        holder.itemView.setOnClickListener {
             context.startActivity(Intent(context, ActivityBacaArtikel::class.java))
         }
     }
 
     inner class ViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
-        var toolbar: Toolbar = itemView.findViewById(R.id.toolbar2)
+        //var toolbar: Toolbar = itemView.findViewById(R.id.toolbar2)
     }
 }

@@ -6,118 +6,174 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:contentInsetStart="0dp"
-        app:menu="@menu/menu_content_favorite"
-        android:clickable="true"
-        android:focusable="true">
-
-        <LinearLayout
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="8dp">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="70dp"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp"
-                android:background="@color/black_overlay"
-                app:srcCompat="@drawable/gallery_vector"
-                android:visibility="gone"/>
-
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_spinner">
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:paddingStart="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="2"
-                    android:text="Judul Lengkap dari Artikel atau Karya Tulis Mahasiswa/Dosen/STMIK Sumedang"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_kategori"
-                    android:fontFamily="sans-serif-medium"
-                    android:maxLines="2"
-                    android:paddingStart="8dp"
-                    android:paddingTop="3dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="3dp"
-                    android:text="Kategori Artikel"
-                    android:textColor="@color/black_80_transparent"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:maxLines="2"
-                    android:text="Nama Penulis"
-                    android:textColor="@color/black_80_transparent"
-                    android:textSize="12sp"
-                    android:visibility="gone"/>
+                android:background="?attr/selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="bottom"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:paddingStart="12dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="10dp">
 
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:tint="@color/black_overlay"
-                        app:srcCompat="@drawable/icons8_eye" />
-
-                    <TextView
-                        android:id="@+id/textView13"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="sans-serif"
-                        android:maxLines="2"
-                        android:text="1000"
-                        android:textColor="@color/black_60_transparent"
-                        android:textSize="12sp" />
+                        android:layout_marginEnd="6dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:tint="@color/black_overlay"
-                        app:srcCompat="@drawable/icons8_view" />
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:srcCompat="@drawable/icons8_regular_document_64" />
 
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/imgStatus"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/icons8_file_64" />
+
+                        <TextView
+                            android:id="@+id/txtJenisKaryaTulis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:text="Artikel"
+                            android:textColor="@color/black_80_transparent"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="sans-serif"
-                        android:maxLines="2"
-                        android:text="1000"
-                        android:textColor="@color/black_60_transparent"
-                        android:textSize="12sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtJudulKaryaTulis"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:maxLines="2"
+                            android:text="Judul Lengkap dari Artikel atau Karya Tulis Mahasiswa/Dosen/STMIK Sumedang"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txtBy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_kategori_2"
+                                android:fontFamily="sans-serif-medium"
+                                android:maxLines="2"
+                                android:paddingStart="8dp"
+                                android:paddingTop="3dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="3dp"
+                                android:text="by Dede Fuji"
+                                android:textColor="@color/white"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/txtTanggalRilis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Desember 2019"
+                                android:textColor="@color/black_60_transparent"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
 
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/txtHapusKaryaTulis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:drawableStart="@drawable/ic_delete"
+                        android:drawablePadding="6dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="Hapus"
+                        android:textColor="@color/black_60_transparent"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtEditKaryaTulis"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/ic_edit"
+                        android:drawablePadding="6dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:text="Edit"
+                        android:textColor="@color/black_60_transparent"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtJumlahView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text="127 Views"
+                        android:textColor="@color/black_60_transparent"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

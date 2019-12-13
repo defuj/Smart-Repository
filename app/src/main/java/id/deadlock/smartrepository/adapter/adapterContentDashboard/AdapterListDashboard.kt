@@ -6,8 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityBacaArtikel
@@ -18,7 +16,7 @@ class AdapterListDashboard (private val context: Context, private val dashboard:
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_4, null)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_3, null)
         return ViewHolder(v)
     }
 
@@ -28,23 +26,13 @@ class AdapterListDashboard (private val context: Context, private val dashboard:
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.toolbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.menu_hapus_content_artikel -> {
-                    Toast.makeText(context,"Menghapus dari daftar",Toast.LENGTH_SHORT).show()
-                    notifyItemRemoved(position)
-                }
-            }
-            true
-        }
-
-        holder.toolbar.setOnClickListener {
+        holder.itemView.setOnClickListener {
             context.startActivity(Intent(context, ActivityBacaArtikel::class.java))
         }
     }
 
     inner class ViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
-        var toolbar: Toolbar = itemView.findViewById(R.id.toolbar3)
+        //var toolbar: Toolbar = itemView.findViewById(R.id.toolbar3)
     }
 }

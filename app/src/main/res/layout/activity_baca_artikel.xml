@@ -214,12 +214,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis abstrak karya tulis ."
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
                 </LinearLayout>
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

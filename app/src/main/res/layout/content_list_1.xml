@@ -5,37 +5,151 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="120dp"
-        android:layout_height="220dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="130dp"
             android:layout_margin="6dp"
             app:cardCornerRadius="8dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/sample" />
+                    android:orientation="vertical"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="12dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="6dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                app:srcCompat="@drawable/icons8_regular_document_64" />
+
+                            <TextView
+                                android:id="@+id/txtJenisKaryaTulis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:text="Artikel"
+                                android:textColor="@color/black_80_transparent"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:maxLines="2"
+                                android:text="Judul Lengkap dari Artikel atau Karya Tulis Mahasiswa/Dosen/STMIK Sumedang"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtBy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/bg_kategori_2"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:maxLines="2"
+                                    android:paddingStart="8dp"
+                                    android:paddingTop="3dp"
+                                    android:paddingEnd="8dp"
+                                    android:paddingBottom="3dp"
+                                    android:text="by Dede Fuji"
+                                    android:textColor="@color/white"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:id="@+id/txtTanggalRilis"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:fontFamily="sans-serif"
+                                    android:text="Desember 2019"
+                                    android:textColor="@color/black_60_transparent"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtJumlahReads"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:gravity="center_vertical"
+                            android:text="127"
+                            android:textColor="@color/gradient1ColorStart"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:text=" Reads"
+                            android:textColor="@color/black_60_transparent"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                            android:id="@+id/txtJumlahView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:gravity="center_vertical"
+                            android:text="127x"
+                            android:textColor="@color/gradient1ColorStart"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:text=" Views"
+                            android:textColor="@color/black_60_transparent"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+                    </LinearLayout>
+                </LinearLayout>
             </FrameLayout>
         </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:maxLines="2"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="12dp"
-            android:text="Memoriable Chocolate:Antalogi Cerpen Nubar Airiz"
-            android:textColor="@color/black_80_transparent"
-            android:textSize="12sp" />
     </LinearLayout>
 </RelativeLayout>

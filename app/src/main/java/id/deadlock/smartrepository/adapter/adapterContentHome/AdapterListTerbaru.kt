@@ -6,7 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityBacaArtikel
@@ -17,7 +16,7 @@ class AdapterListTerbaru (private val context: Context, private val rekomendasi:
 
     @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_3, null)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_list_2, null)
         return ViewHolder(v)
     }
 
@@ -27,14 +26,14 @@ class AdapterListTerbaru (private val context: Context, private val rekomendasi:
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.toolbar.setOnClickListener {
+        holder.itemView.setOnClickListener {
             context.startActivity(Intent(context, ActivityBacaArtikel::class.java))
         }
     }
 
     inner class ViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
-        var toolbar: Toolbar = itemView.findViewById(R.id.toolbar3)
+        //var toolbar: Toolbar = itemView.findViewById(R.id.toolbar3)
         //var number: TextView = itemView.findViewById(R.id.txtNumber)
     }
 }

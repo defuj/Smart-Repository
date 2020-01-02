@@ -24,6 +24,9 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom_nav"
             app:elevation="6dp"
-            app:itemTextColor="@drawable/tab_selector" />
+            app:itemTextColor="@drawable/tab_selector"
+            app:itemTextAppearanceActive="@style/NavigationBottom"
+            app:itemTextAppearanceInactive="@style/NavigationBottom"
+            app:itemIconSize="24dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

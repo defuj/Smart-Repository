@@ -53,7 +53,7 @@ class ActivityHome : AppCompatActivity() {
                 else -> {
                     if(cache!!.getBoolean(dataCache.logged,false)){
                         if(cache!!.getBoolean(dataCache.status_akun,false)){
-                            if(cache!!.getString(dataCache.akses,"user") == "user"){
+                            if(cache!!.getString(dataCache.akses,"User") == "User"){
                                 viewPager!!.setCurrentItem(3,false)
                             }else{
                                 viewPager!!.setCurrentItem(4,false)

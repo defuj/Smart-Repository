@@ -63,17 +63,62 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recyclerFavorite"
                     android:overScrollMode="never"
-                    android:layout_marginBottom="56dp"/>
+                    android:layout_marginBottom="16dp"/>
+                <TextView
+                    android:id="@+id/textLoadMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_refresh"
+                    android:fontFamily="@font/poppins"
+                    android:text="Tampilkan Lainnya"
+                    android:textSize="14sp"
+                    android:layout_marginTop="6dp"
+                    android:padding="8dp"
+                    android:drawablePadding="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginBottom="16dp"/>
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutEmptyDataFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgEmpty"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/icons8_empty_folder_64" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="Tidak ada karya tulis favorit."
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,6 @@
 package id.deadlock.smartrepository.model
 
-object ModelListVerifikasiAKun {
+class ModelListVerifikasiAKun {
     var nama : String? = null
     var nim : String? = null
     var email : String? = null

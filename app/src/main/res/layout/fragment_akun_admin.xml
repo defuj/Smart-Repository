@@ -188,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Semua Akun"
+                            android:text="Akun Terverifikasi"
                             android:textColor="@color/black_80_transparent"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -311,7 +311,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Semua Artikel"
+                            android:text="Artikel Terbit"
                             android:textColor="@color/black_80_transparent"
                             android:textSize="12sp" />
                     </LinearLayout>

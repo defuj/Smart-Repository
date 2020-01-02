@@ -27,7 +27,7 @@
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,7 +39,10 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lupa kata sandi?" />
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="@font/poppins"
+                    android:maxWidth="220dp"
+                    android:text="Hubungi Admin jika lupa dengan kata sandi akun Anda." />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -48,13 +51,15 @@
                     android:linksClickable="true"
                     android:text=" klik di sini."
                     android:textColor="#0B84E2"
-                    android:textColorLink="#0B84E2" />
+                    android:textColorLink="#0B84E2"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnDaftar"
                 android:layout_width="140dp"
                 android:layout_height="45dp"
+                android:layout_margin="6dp"
                 android:background="@drawable/button_gradient_daftar"
                 android:text="Buat Akun"
                 android:textAllCaps="false"

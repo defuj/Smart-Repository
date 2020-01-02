@@ -1,7 +1,7 @@
 package id.deadlock.smartrepository.model
 import org.json.JSONArray
 
-class ModelListTerbaru {
+class ModelListCari {
     var id : String? = null
     var jenis : String? = null
     var judul : String? = null

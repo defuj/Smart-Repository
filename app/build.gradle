@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "id.deadlock.smartrepository"
         minSdkVersion 19
@@ -32,6 +34,11 @@ android {
             zipAlignEnabled true
             crunchPngs false
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -61,8 +68,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     //pdf reader
-    //implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     //implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'

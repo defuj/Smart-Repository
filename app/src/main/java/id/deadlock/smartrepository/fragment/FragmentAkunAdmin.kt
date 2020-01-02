@@ -111,7 +111,7 @@ class FragmentAkunAdmin : Fragment() {
             LinearLayoutManager.VERTICAL,false)
 
         for(i in 0 until 5){
-            val modelDashboard = ModelListDashboard
+            val modelDashboard = ModelListDashboard()
             modelDashboard.judul = ""
             artikel!!.add(modelDashboard)
         }

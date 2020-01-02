@@ -42,8 +42,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             app:srcCompat="@drawable/icons8_regular_document_64" />
 
                         <ImageView
@@ -54,13 +54,14 @@
                             app:srcCompat="@drawable/icons8_file_64" />
 
                         <TextView
-                            android:id="@+id/txtJenisKaryaTulis"
+                            android:id="@+id/txtJenisKaryaTulis2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:text="Artikel"
                             android:textColor="@color/black_80_transparent"
-                            android:textSize="10sp" />
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -86,7 +87,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/txtBy"
+                                android:id="@+id/txtJenisKaryaTulis"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bg_kategori_2"
@@ -96,7 +97,7 @@
                                 android:paddingTop="3dp"
                                 android:paddingEnd="8dp"
                                 android:paddingBottom="3dp"
-                                android:text="by Dede Fuji"
+                                android:text="Artikel"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
 
@@ -131,36 +132,89 @@
                     android:paddingEnd="12dp"
                     android:paddingBottom="6dp">
 
+                    <ImageButton
+                        android:id="@+id/btnFavorites"
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@color/transparent"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_favorite_love_big" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton5"
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:background="@color/transparent"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_cloud_download_big" />
+
                     <TextView
                         android:id="@+id/txtFavorites"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:clickable="true"
                         android:drawableStart="@drawable/ic_favorite_love"
                         android:drawablePadding="6dp"
+                        android:focusable="true"
                         android:fontFamily="sans-serif"
                         android:gravity="center_vertical"
                         android:paddingTop="6dp"
                         android:paddingBottom="6dp"
                         android:text="Favoritkan"
                         android:textColor="@color/black_60_transparent"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/txtUnduh"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
+                        android:clickable="true"
                         android:drawableStart="@drawable/ic_cloud_download"
                         android:drawablePadding="6dp"
+                        android:focusable="true"
                         android:fontFamily="sans-serif"
                         android:gravity="center_vertical"
                         android:paddingTop="6dp"
                         android:paddingBottom="6dp"
-                        android:text="Unduh"
+                        android:text="Offline"
                         android:textColor="@color/black_60_transparent"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textColor="@color/black_60_transparent"
+                        android:textSize="13sp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/txtJumlahReads"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center_vertical"
+                        android:text="127"
+                        android:textColor="@color/gradient1ColorStart"
                         android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text=" Pembaca"
+                        android:textColor="@color/black_60_transparent"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/txtJumlahView"
@@ -168,19 +222,19 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
                         android:gravity="center_vertical"
-                        android:text="127x"
+                        android:text="127"
                         android:textColor="@color/gradient1ColorStart"
                         android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
                         android:fontFamily="sans-serif"
                         android:gravity="center_vertical"
-                        android:text=" Views"
+                        android:text=" Dilihat"
                         android:textColor="@color/black_60_transparent"
-                        android:textSize="13sp"
-                        android:layout_marginEnd="6dp"/>
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </LinearLayout>

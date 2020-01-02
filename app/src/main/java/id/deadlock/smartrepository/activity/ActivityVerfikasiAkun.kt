@@ -57,7 +57,7 @@ class ActivityVerfikasiAkun : AppCompatActivity() {
             LinearLayoutManager.VERTICAL,false)
 
         for(i in 0 until 2){
-            val modelAkun = ModelListVerifikasiAKun
+            val modelAkun = ModelListVerifikasiAKun()
             modelAkun.nama = "Nama Pendaftar $i"
             modelAkun.email = "A$i.1700029@mhs.stmik-sumedang.ac.id"
             modelAkun.nim = "$i"

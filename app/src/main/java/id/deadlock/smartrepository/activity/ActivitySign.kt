@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -13,6 +12,13 @@ import com.google.android.material.snackbar.Snackbar
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.helper.SnackbarHelper
+import id.deadlock.smartrepository.network.ApiServices
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ActivitySign : AppCompatActivity() {
     private var signin : Button? = null
@@ -74,42 +80,58 @@ class ActivitySign : AppCompatActivity() {
         pd!!.setCancelable(false)
         pd!!.show()
 
-        object : CountDownTimer(2000,1000){
-            override fun onFinish() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiServices.URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val api = retrofit.create(ApiServices::class.java)
+        val call = api.masuk("masuk",username!!.text.toString(),password!!.text.toString())
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
                 pd!!.dismiss()
-                if(username!!.text.toString() == "user" && password!!.text.toString() == "user"){
-                    val editor = cache!!.edit()
-                    editor.putBoolean(dataCache.show_login,false)
-                    editor.putBoolean(dataCache.logged,true)
-                    editor.putBoolean(dataCache.status_akun,true)
-                    editor.putString(dataCache.username,username!!.text.toString())
-                    editor.putString(dataCache.email,"dumy@domain.com")
-                    editor.putString(dataCache.nama,"dumy name")
-                    editor.putString(dataCache.password,password!!.text.toString())
-                    editor.putString(dataCache.akses,"user")
-                    editor.apply()
-                    startActivity(Intent(this@ActivitySign,ActivityHome::class.java))
-                }else if(username!!.text.toString() == "admin" && password!!.text.toString() == "admin"){
-                    val editor = cache!!.edit()
-                    editor.putBoolean(dataCache.show_login,false)
-                    editor.putBoolean(dataCache.logged,true)
-                    editor.putBoolean(dataCache.status_akun,true)
-                    editor.putString(dataCache.username,username!!.text.toString())
-                    editor.putString(dataCache.email,"dumy@domain.com")
-                    editor.putString(dataCache.nama,"dumy name")
-                    editor.putString(dataCache.password,password!!.text.toString())
-                    editor.putString(dataCache.akses,"admin")
-                    editor.apply()
-                    startActivity(Intent(this@ActivitySign,ActivityHome::class.java))
+                showSnackbar("Koneksi Bermasalah.")
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                pd!!.dismiss()
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        val jsonresponse = response.body()
+                        val jsonObject = JSONObject(jsonresponse!!)
+                        if(!jsonObject.optBoolean("result")){
+                            showSnackbar(jsonObject.optString("msg"))
+                        }else{
+                            val dataArray = jsonObject.getJSONArray("data")
+                            for (i in 0 until dataArray.length()) {
+                                val dataobj = dataArray.getJSONObject(i)
+
+                                val editor = cache!!.edit()
+                                editor.putBoolean(dataCache.show_login,false)
+                                editor.putBoolean(dataCache.logged,true)
+                                editor.putBoolean(dataCache.status_akun,dataobj.getBoolean("status_akun"))
+                                editor.putString(dataCache.username,dataobj.getString("username"))
+                                editor.putString(dataCache.email,dataobj.getString("email"))
+                                editor.putString(dataCache.nama,dataobj.getString("nama"))
+                                editor.putString(dataCache.password,dataobj.getString("password"))
+                                editor.putString(dataCache.akses,dataobj.getString("akses"))
+                                editor.apply()
+
+                                if(!dataobj.getBoolean("status_akun")){
+                                    startActivity(Intent(this@ActivitySign,ActivityInputVerificationCode::class.java))
+                                }else{
+                                    startActivity(Intent(this@ActivitySign,ActivityHome::class.java))
+                                }
+                            }
+                        }
+                    }else{
+                        showSnackbar("Terjadi Kesalahan.")
+                    }
                 }else{
-                    showSnackbar("NIM/NIDN Tidak Terdaftar.")
+                    showSnackbar("Terjadi Kesalahan.")
                 }
             }
 
-            override fun onTick(millisUntilFinished: Long) {
-
-            }
-        }.start()
+        })
     }
 
     private fun showSnackbar(s: String) {

@@ -7,20 +7,15 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityHome
 import id.deadlock.smartrepository.adapter.adapterContentHistory.AdapterListHistory
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListHistory
 import id.deadlock.smartrepository.network.ApiServices
+import kotlinx.android.synthetic.main.fragment_history.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -33,14 +28,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  * A simple [Fragment] subclass.
  */
 class FragmentHistory : Fragment() {
-    private var refresh : SwipeRefreshLayout? = null
-    private var recyclerViewHistory : RecyclerView? = null
     private var history: ArrayList<ModelListHistory>? = null
-    private var toolbar : Toolbar? = null
     private var cache : SharedPreferences? = null
     private var limit : Int = 10 //+10 tiap load
-    private var loadMore : TextView? = null
-    private var emptyData : RelativeLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -61,53 +51,65 @@ class FragmentHistory : Fragment() {
 
     private fun initial() {
         cache = activity!!.getSharedPreferences(dataCache.CACHE,0)
-        toolbar = activity!!.findViewById(R.id.toolbarHistory)
-        refresh = activity!!.findViewById(R.id.refreshHistory)
-        recyclerViewHistory = activity!!.findViewById(R.id.recyclerHistory)
-        loadMore = activity!!.findViewById(R.id.textLoadMore)
-        loadMore!!.visibility = View.GONE
-        emptyData = activity!!.findViewById(R.id.layoutEmptyDataHistory)
-        emptyData!!.visibility = View.GONE
+        textLoadMoreHistory!!.visibility = View.GONE
+        layoutEmptyDataHistory!!.visibility = View.GONE
         runFunction()
     }
 
     private fun runFunction() {
-        refresh!!.setOnRefreshListener {
+        refreshHistory!!.setOnRefreshListener {
             object : CountDownTimer(2000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
 
                 }
 
                 override fun onFinish() {
-                    refresh!!.isRefreshing = false
+                    refreshHistory!!.isRefreshing = false
                     loadHistory()
 
                 }
             }.start()
         }
 
-        loadMore!!.setOnClickListener {
+        textLoadMoreHistory!!.setOnClickListener {
             limit += 10
             loadHistory()
         }
 
-        toolbar!!.setOnMenuItemClickListener {
+        toolbarHistory!!.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.menu_hapus_history -> Toast.makeText(
-                    activity,
-                    "Membersihkan History",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.menu_hapus_history -> {
+                    hapusHistory()
+                }
             }
             true
         }
         loadHistory()
     }
 
+    private fun hapusHistory() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiServices.URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val api = retrofit.create(ApiServices::class.java)
+        val call = api.karyaTulis("hapus_history",cache!!.getString(dataCache.username,"user").toString())
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                loadHistory()
+            }
+
+        })
+    }
+
     private fun loadHistory() {
         history = ArrayList()
         history!!.clear()
-        recyclerViewHistory!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        recyclerHistory!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
 
         val retrofit = Retrofit.Builder()
             .baseUrl(ApiServices.URL)
@@ -127,12 +129,13 @@ class FragmentHistory : Fragment() {
                         try{
                             val jsonObject = JSONObject(jsonresponse!!)
                             if(jsonObject.optInt("jml") > 0){
-                                emptyData!!.visibility = View.GONE
+                                recyclerHistory!!.visibility = View.VISIBLE
+                                layoutEmptyDataHistory!!.visibility = View.GONE
                                 val dataArray = jsonObject.getJSONArray("artikel")
                                 if(jsonObject.optInt("jml_total") > limit){
-                                    loadMore!!.visibility = View.VISIBLE
+                                    textLoadMoreHistory!!.visibility = View.VISIBLE
                                 }else{
-                                    loadMore!!.visibility = View.GONE
+                                    textLoadMoreHistory!!.visibility = View.GONE
                                 }
 
                                 for (i in 0 until dataArray.length()) {
@@ -152,10 +155,11 @@ class FragmentHistory : Fragment() {
                                     history!!.add(modelHistory)
                                 }
                                 val adapterListHistory = AdapterListHistory(activity as ActivityHome, history!!)
-                                recyclerViewHistory!!.adapter = adapterListHistory
+                                recyclerHistory!!.adapter = adapterListHistory
                             }else{
-                                emptyData!!.visibility = View.VISIBLE
-                                loadMore!!.visibility = View.GONE
+                                layoutEmptyDataHistory!!.visibility = View.VISIBLE
+                                textLoadMoreHistory!!.visibility = View.GONE
+                                recyclerHistory!!.visibility = View.GONE
                             }
                         }catch (e: JSONException) {
                             e.printStackTrace()
@@ -165,13 +169,6 @@ class FragmentHistory : Fragment() {
             }
 
         })
-        /*for(i in 0 until 12){
-            val modelHistory = ModelListHistory()
-            modelHistory.judul = ""
-            history!!.add(modelHistory)
-        }
-        val adapterListHistory = AdapterListHistory(activity as ActivityHome, history!!)
-        recyclerViewHistory!!.adapter = adapterListHistory */
     }
 
 }

@@ -87,7 +87,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/txtJenisKaryaTulis"
+                                android:id="@+id/txtJenisKaryaTuliss"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/bg_kategori_2"
@@ -99,13 +99,14 @@
                                 android:paddingBottom="3dp"
                                 android:text="Artikel"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="10sp"
+                                android:visibility="gone"
+                                android:layout_marginEnd="8dp"/>
 
                             <TextView
                                 android:id="@+id/txtTanggalRilis"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
                                 android:fontFamily="sans-serif"
                                 android:text="Desember 2019"
                                 android:textColor="@color/black_60_transparent"
@@ -165,7 +166,27 @@
                         android:text="Favoritkan"
                         android:textColor="@color/black_60_transparent"
                         android:textSize="14sp"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/txtJenisKaryaTulis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_kategori_2_full_rounded"
+                        android:fontFamily="sans-serif-medium"
+                        android:drawableStart="@drawable/ic_check_circle"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:maxLines="2"
+                        android:paddingStart="4dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="3dp"
+                        android:text="Artikel"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"/>
 
                     <TextView
                         android:id="@+id/txtUnduh"

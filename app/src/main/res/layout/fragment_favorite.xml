@@ -32,7 +32,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Favorit"
+                    android:text="Karya Tulis Favorit"
                     android:textColor="@color/black_80_transparent"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -72,7 +72,7 @@
                     android:overScrollMode="never"
                     android:layout_marginBottom="16dp"/>
                 <TextView
-                    android:id="@+id/textLoadMore"
+                    android:id="@+id/textLoadMoreFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_refresh"

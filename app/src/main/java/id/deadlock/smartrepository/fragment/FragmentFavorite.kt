@@ -7,20 +7,16 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityHome
 import id.deadlock.smartrepository.adapter.adapterContentFavorite.AdapterListFavorite
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListFavorite
 import id.deadlock.smartrepository.network.ApiServices
+import kotlinx.android.synthetic.main.fragment_favorite.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -33,14 +29,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
  * A simple [Fragment] subclass.
  */
 class FragmentFavorite : Fragment() {
-    private var toolbar:Toolbar? = null
-    private var refresh : SwipeRefreshLayout? = null
-    private var recyclerViewFavorite : RecyclerView? = null
     private var favorite: ArrayList<ModelListFavorite>? = null
     private var cache : SharedPreferences? = null
     private var limit : Int = 10 //+10 tiap load
-    private var loadMore : TextView? = null
-    private var emptyData : RelativeLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,38 +46,33 @@ class FragmentFavorite : Fragment() {
     }
 
     private fun initial() {
-        toolbar = activity!!.findViewById(R.id.toolbarFavorite)
-        refresh = activity!!.findViewById(R.id.refreshFavorite)
-        recyclerViewFavorite = activity!!.findViewById(R.id.recyclerFavorite)
         cache = activity!!.getSharedPreferences(dataCache.CACHE,0)
-        loadMore = activity!!.findViewById(R.id.textLoadMore)
-        loadMore!!.visibility = View.GONE
-        emptyData = activity!!.findViewById(R.id.layoutEmptyDataFavorite)
-        emptyData!!.visibility = View.GONE
+        textLoadMoreFavorite!!.visibility = View.GONE
+        layoutEmptyDataFavorite!!.visibility = View.GONE
         runFunction()
     }
 
     private fun runFunction() {
-        refresh!!.setOnRefreshListener {
+        refreshFavorite!!.setOnRefreshListener {
             object : CountDownTimer(2000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
 
                 }
 
                 override fun onFinish() {
-                    refresh!!.isRefreshing = false
+                    refreshFavorite!!.isRefreshing = false
                     loadFavorite()
 
                 }
             }.start()
         }
 
-        loadMore!!.setOnClickListener {
+        textLoadMoreFavorite!!.setOnClickListener {
             limit += 10
             loadFavorite()
         }
 
-        toolbar!!.setOnMenuItemClickListener {
+        toolbarFavorite!!.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.menu_hapus_favorite-> Toast.makeText(activity,"Menghapus", Toast.LENGTH_SHORT).show()
                 R.id.menu_tambah_favorite-> Toast.makeText(activity,"Menambah", Toast.LENGTH_SHORT).show()
@@ -99,7 +85,7 @@ class FragmentFavorite : Fragment() {
     private fun loadFavorite() {
         favorite = ArrayList()
         favorite!!.clear()
-        recyclerViewFavorite!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+        recyclerFavorite!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
 
         val retrofit = Retrofit.Builder()
             .baseUrl(ApiServices.URL)
@@ -119,12 +105,12 @@ class FragmentFavorite : Fragment() {
                         try{
                             val jsonObject = JSONObject(jsonresponse!!)
                             if(jsonObject.optInt("jml") > 0){
-                                emptyData!!.visibility = View.GONE
+                                layoutEmptyDataFavorite!!.visibility = View.GONE
                                 val dataArray = jsonObject.getJSONArray("artikel")
                                 if(jsonObject.optInt("jml_total") > limit){
-                                    loadMore!!.visibility = View.VISIBLE
+                                    textLoadMoreFavorite!!.visibility = View.VISIBLE
                                 }else{
-                                    loadMore!!.visibility = View.GONE
+                                    textLoadMoreFavorite!!.visibility = View.GONE
                                 }
 
                                 for (i in 0 until dataArray.length()) {
@@ -144,10 +130,10 @@ class FragmentFavorite : Fragment() {
                                     favorite!!.add(modelFavorite)
                                 }
                                 val adapterListFavorite = AdapterListFavorite(activity as ActivityHome, favorite!!)
-                                recyclerViewFavorite!!.adapter = adapterListFavorite
+                                recyclerFavorite!!.adapter = adapterListFavorite
                             }else{
-                                emptyData!!.visibility = View.VISIBLE
-                                loadMore!!.visibility = View.GONE
+                                layoutEmptyDataFavorite!!.visibility = View.VISIBLE
+                                textLoadMoreFavorite!!.visibility = View.GONE
                             }
                         }catch (e: JSONException) {
                             e.printStackTrace()

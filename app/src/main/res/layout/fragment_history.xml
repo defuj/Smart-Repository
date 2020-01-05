@@ -73,7 +73,7 @@
                     android:overScrollMode="never"
                     android:layout_marginBottom="16dp"/>
                 <TextView
-                    android:id="@+id/textLoadMore"
+                    android:id="@+id/textLoadMoreHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_refresh"

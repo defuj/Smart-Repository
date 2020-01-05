@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/menu_hapus_history"
-        android:title="Bersihkan History"/>
+        android:title="Bersihkan Riwayat"/>
 </menu>

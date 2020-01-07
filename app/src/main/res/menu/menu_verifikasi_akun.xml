@@ -4,11 +4,12 @@
     <item
         android:icon="@drawable/ic_search"
         android:title="Cari"
-        android:id="@+id/menu_filter"
+        android:id="@+id/menu_cari"
         app:showAsAction="ifRoom" />
     <item
         android:icon="@drawable/ic_sort_by_alpha"
         android:title="Sort"
         android:id="@+id/menu_sort"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 </menu>

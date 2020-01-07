@@ -1,6 +1,7 @@
 package id.deadlock.smartrepository.fragment
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -13,12 +14,24 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivitySign
 import id.deadlock.smartrepository.activity.ActivityUpload
+import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListCari
 import id.deadlock.smartrepository.dataCache
+import id.deadlock.smartrepository.model.ModelListCari
+import id.deadlock.smartrepository.network.ApiServices
+import kotlinx.android.synthetic.main.fragment_akun_user.*
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -33,6 +46,8 @@ class FragmentAkunUser : Fragment() {
     private var status : TextView? = null
     private var nomorInduk : TextView? = null
     private var upload : FloatingActionButton? = null
+    private var limit : Int = 10 //+10 tiap load
+    private var artikel: ArrayList<ModelListCari>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,14 +71,15 @@ class FragmentAkunUser : Fragment() {
         runFunction()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun runFunction() {
         upload!!.setOnClickListener {
             startActivity(Intent(activity,ActivityUpload::class.java))
         }
-        //nama!!.text = cache!!.getString(dataCache.nama,"Nama Lengkap Pengguna")
-        //email!!.text = cache!!.getString(dataCache.email,"AX.XX00XXX@mhs.stmik-sumedang.ac.id")
-        //status!!.text = cache!!.getString(dataCache.status_akun,"Status : Mahasiswa")
-        //nomorInduk!!.text = cache!!.getString(dataCache.username,"Nomor Induk : AX.XX00XXX")
+        nama!!.text = cache!!.getString(dataCache.nama,"")
+        email!!.text = cache!!.getString(dataCache.email,"")
+        //status!!.text = "Status : ${cache!!.getString(dataCache.status_akun,"")}"
+        nomorInduk!!.text = "Nomor Induk : ${cache!!.getString(dataCache.username,"")}"
 
         refresh!!.setOnRefreshListener {
             object : CountDownTimer(2000, 1000) {
@@ -73,6 +89,8 @@ class FragmentAkunUser : Fragment() {
 
                 override fun onFinish() {
                     refresh!!.isRefreshing = false
+                    loadInformasi()
+                    showArtikel()
 
                 }
             }.start()
@@ -84,6 +102,117 @@ class FragmentAkunUser : Fragment() {
             }
             true
         }
+
+        textLoadMoreListArtikelAkun!!.setOnClickListener {
+            limit += 10
+            showArtikel()
+        }
+
+        recyclerAkunUser!!.visibility = View.GONE
+        layoutArtikelAkunEmpty!!.visibility = View.GONE
+        textLoadMoreListArtikelAkun!!.visibility = View.GONE
+
+        loadInformasi()
+        showArtikel()
+    }
+
+    private fun showArtikel() {
+        artikel = ArrayList()
+        artikel!!.clear()
+        recyclerAkunUser!!.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiServices.URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val api = retrofit.create(ApiServices::class.java)
+        val call = api.listKaryaTulisAkun("listKaryaTulisAkun",
+            cache!!.getString(dataCache.username,"user").toString(),
+            limit)
+
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        val jsonresponse = response.body()
+                        try{
+                            val jsonObject = JSONObject(jsonresponse!!)
+                            if(jsonObject.optInt("jml") > 0){
+                                layoutArtikelAkunEmpty!!.visibility = View.GONE
+                                recyclerAkunUser!!.visibility = View.VISIBLE
+                                val dataArray = jsonObject.getJSONArray("artikel")
+                                if(jsonObject.optInt("jml_total") > limit){
+                                    textLoadMoreListArtikelAkun!!.visibility = View.VISIBLE
+                                }else{
+                                    textLoadMoreListArtikelAkun!!.visibility = View.GONE
+                                }
+
+                                for (i in 0 until dataArray.length()) {
+                                    val dataobj = dataArray.getJSONObject(i)
+                                    val modelResult = ModelListCari()
+                                    modelResult.id = dataobj.getString("id")
+                                    modelResult.jenis = dataobj.getString("jenis")
+                                    modelResult.judul = dataobj.getString("judul")
+                                    modelResult.tahun = dataobj.getString("tahun")
+                                    modelResult.tgl_upload = dataobj.getString("tgl_upload")
+                                    modelResult.views = dataobj.getString("views")
+                                    modelResult.readers = dataobj.getString("readers")
+                                    modelResult.status_terbit = dataobj.getString("status_terbit")
+                                    modelResult.source = dataobj.getString("source")
+                                    modelResult.nama = dataobj.getJSONArray("penulis")
+                                    modelResult.favorited = dataobj.getBoolean("favorited")
+                                    artikel!!.add(modelResult)
+                                }
+                                val adapterListCari = AdapterListCari(activity!!, artikel!!)
+                                recyclerAkunUser!!.adapter = adapterListCari
+                            }else{
+                                layoutArtikelAkunEmpty!!.visibility = View.VISIBLE
+                                recyclerAkunUser!!.visibility = View.GONE
+                            }
+                        }catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+            }
+
+        })
+    }
+
+    private fun loadInformasi() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiServices.URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val api = retrofit.create(ApiServices::class.java)
+        val call = api.InformasiKaryaTulisAkun(
+            "InformasiKaryaTulisAkun",
+            cache!!.getString(dataCache.username,"user")!!)
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(activity!!,"Koneksi Bermasalah.",Toast.LENGTH_SHORT).show()
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        val jsonresponse = response.body()
+                        val jsonObject = JSONObject(jsonresponse!!)
+                        if(jsonObject.optBoolean("result")){
+                            jmlPembaca!!.text = jsonObject.optString("jml_pembaca")
+                            jmlKaryaTulis!!.text = jsonObject.optString("jml_karya_tulis")
+                            jml_viewer!!.text = "${jsonObject.optString("jml_view")}x"
+                        }
+                    }
+                }
+            }
+
+        })
     }
 
 

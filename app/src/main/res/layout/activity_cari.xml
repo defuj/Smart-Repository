@@ -31,26 +31,26 @@
 
                 <EditText
                     android:id="@+id/editTextCari"
-                    android:layout_marginEnd="1dp"
-                    android:fontFamily="sans-serif"
-                    android:textColor="@color/black_overlay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:hint="Mencari sebuah artikel?"
-                    android:textSize="14sp"
-                    android:padding="10dp"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="16dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
                     android:background="@drawable/bg_pencarian"
                     android:drawableStart="@drawable/ic_search_2"
                     android:drawablePadding="6dp"
+                    android:fontFamily="sans-serif"
                     android:gravity="center_vertical"
-                    android:maxLines="1"
+                    android:hint="Mencari sebuah artikel?"
+                    android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:imeOptions="actionSearch"/>
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:paddingStart="14dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black_overlay"
+                    android:textSize="14sp" />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

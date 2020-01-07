@@ -3,6 +3,7 @@ package id.deadlock.smartrepository.fragment
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.activity.ActivityCari
 import id.deadlock.smartrepository.activity.ActivityHome
+import id.deadlock.smartrepository.activity.ActivityListKaryaTulis
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListPopular
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListRekomendasi
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListTerbaru
@@ -112,16 +114,26 @@ class FragmentHome : Fragment() {
             Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
         }
         menuJurnal!!.setOnClickListener {
-            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity,ActivityListKaryaTulis::class.java)
+            intent.putExtra("kategori","Artikel")
+            startActivity(intent)
         }
         menuSkripsi!!.setOnClickListener {
-            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity,ActivityListKaryaTulis::class.java)
+            intent.putExtra("kategori","Skripsi")
+            startActivity(intent)
         }
         menuTa!!.setOnClickListener {
-            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity,ActivityListKaryaTulis::class.java)
+            intent.putExtra("kategori","Tugas Akhir")
+            startActivity(intent)
         }
         menuStmik!!.setOnClickListener {
-            Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, "This feature is under development.",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://stmik-sumedang.ac.id")))
         }
 
         refresh!!.setOnRefreshListener {

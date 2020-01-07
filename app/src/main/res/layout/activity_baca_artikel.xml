@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:chip="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -112,10 +113,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="5dp">
 
+                    <com.plumillonforge.android.chipview.ChipView
+                        android:id="@+id/list_nama_penulis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        chip:chip_background="@color/gradient1ColorCenter"
+                        chip:chip_background_selected="@color/gradient1ColorCenter"
+                        chip:chip_corner_radius="6dp"
+                        chip:chip_line_spacing="20dp"
+                        chip:chip_padding="10dp"
+                        chip:chip_side_padding="10dp"
+                        chip:chip_spacing="16dp"
+                        android:visibility="gone"/>
+
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/txtBy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -134,7 +149,6 @@
                         android:id="@+id/txtTanggalRilis"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:fontFamily="sans-serif"
                         android:text="Desember 2019"
                         android:textColor="@color/black_60_transparent"

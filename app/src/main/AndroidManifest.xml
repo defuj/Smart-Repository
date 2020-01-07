@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="id.deadlock.smartrepository"
     android:versionCode="10"
-    android:versionName="1.0 Beta 5">
+    android:versionName="1.0 Beta 6">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,10 +25,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Full"
+            android:name=".activity.ActivityListKaryaTulis"/>
+        <activity
             android:name=".activity.ActivityDetailArtikel"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_detail_artikel"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activity.ActivityVerfikasiAkun"
             android:screenOrientation="portrait"

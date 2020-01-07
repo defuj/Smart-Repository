@@ -64,4 +64,26 @@ interface ApiServices {
         @Field("fun") functions: String,
         @Field("username") nomor_induk: String,
         @Field("id") id_keryaTulis: String): Call<String>
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun listKaryaTulis(
+        @Field("fun") functions: String,
+        @Field("nomor_induk") nomor_induk: String,
+        @Field("kategori") kategori: String,
+        @Field("limit") limit: Int): Call<String>
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun InformasiKaryaTulisAkun(
+        @Field("fun") functions: String,
+        @Field("nomor_induk") nomor_induk: String): Call<String>
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun listKaryaTulisAkun(
+        @Field("fun") functions: String,
+        @Field("nomor_induk") nomor_induk: String,
+        @Field("limit") limit: Int): Call<String>
+
 }

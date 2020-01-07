@@ -75,7 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,6 +103,7 @@
                             android:gravity="center_vertical|center_horizontal">
 
                             <TextView
+                                android:id="@+id/jmlPembaca"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -113,7 +113,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Reads"
+                                android:text="Pembaca"
                                 android:fontFamily="sans-serif"
                                 android:textColor="@color/black_80_transparent"
                                 android:textSize="14sp"/>
@@ -126,6 +126,7 @@
                             android:gravity="center_vertical|center_horizontal">
 
                             <TextView
+                                android:id="@+id/jml_viewer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -135,7 +136,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Views"
+                                android:text="Dilihat"
                                 android:fontFamily="sans-serif"
                                 android:textColor="@color/black_80_transparent"
                                 android:textSize="14sp"/>
@@ -148,6 +149,7 @@
                             android:gravity="center_vertical|center_horizontal">
 
                             <TextView
+                                android:id="@+id/jmlKaryaTulis"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -157,7 +159,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Artikel"
+                                android:text="Karya Tulis"
                                 android:fontFamily="sans-serif"
                                 android:textColor="@color/black_80_transparent"
                                 android:textSize="14sp"/>
@@ -192,7 +194,8 @@
                             android:text="Status : Mahasiswa"
                             android:fontFamily="sans-serif"
                             android:textColor="@color/black_60_transparent"
-                            android:textSize="13sp"/>
+                            android:textSize="13sp"
+                            android:visibility="gone"/>
                         <TextView
                             android:id="@+id/txtNomorInduk"
                             android:layout_width="match_parent"
@@ -229,11 +232,54 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/recyclerAkunUser"
                     android:overScrollMode="never"
-                    android:layout_marginBottom="56dp"/>
+                    android:layout_marginBottom="16dp"/>
+                <TextView
+                    android:id="@+id/textLoadMoreListArtikelAkun"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:clickable="true"
+                    android:drawableStart="@drawable/ic_refresh"
+                    android:drawablePadding="6dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins"
+                    android:padding="8dp"
+                    android:text="Tampilkan Lainnya"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <RelativeLayout
+        android:id="@+id/layoutArtikelAkunEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgEmpty"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/icons8_nothing_found_96" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_horizontal"
+                android:text="Belum Memiliki Karya Tulis"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

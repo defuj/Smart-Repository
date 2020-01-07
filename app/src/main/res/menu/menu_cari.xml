@@ -5,10 +5,12 @@
         android:icon="@drawable/ic_filter_list"
         android:title="Filter"
         android:id="@+id/menu_filter"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
     <item
         android:icon="@drawable/ic_sort_by_alpha"
         android:title="Sort"
         android:id="@+id/menu_sort"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 </menu>

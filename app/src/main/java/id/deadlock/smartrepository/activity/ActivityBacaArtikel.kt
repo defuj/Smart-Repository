@@ -18,7 +18,6 @@ import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.dataCache
-import id.deadlock.smartrepository.model.ModelListPenulis
 import id.deadlock.smartrepository.network.ApiServices
 import org.json.JSONException
 import org.json.JSONObject
@@ -48,6 +47,8 @@ class ActivityBacaArtikel : AppCompatActivity() {
     private var DOCUMENTREADY: Boolean = false
     private var DOCUMENTFILE : String? = null
     private var DOCUMENTNAME : String? = null
+
+    //private var penulisList : List<Chip>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -248,6 +249,8 @@ class ActivityBacaArtikel : AppCompatActivity() {
     }
 
     private fun getAbstrakAndWriter(){
+        //penulisList = ArrayList()
+
         val retrofit = Retrofit.Builder()
             .baseUrl(ApiServices.URL)
             .addConverterFactory(ScalarsConverterFactory.create())
@@ -270,9 +273,12 @@ class ActivityBacaArtikel : AppCompatActivity() {
                             val dataArray = jsonObject.getJSONArray("penulis")
                             for (i in 0 until dataArray.length()) {
                                 val dataobj = dataArray.getJSONObject(i)
-                                val modelPenulis = ModelListPenulis()
-                                modelPenulis.nama = dataobj.getString("nama")
-                                modelPenulis.nomor_induk = dataobj.getString("nomor_induk")
+                                //val modelPenulis = ModelListPenulis()
+                                //modelPenulis.nama = dataobj.getString("nama")
+                                //modelPenulis.nomor_induk = dataobj.getString("nomor_induk")
+                                //penulisList
+
+                                //list_nama_penulis.chipList = penulisList
                             }
                         }catch (e: JSONException) {
                             e.printStackTrace()

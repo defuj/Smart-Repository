@@ -97,4 +97,11 @@ interface ApiServices {
         @Field("fun") functions: String,
         @Field("username") username: String): Call<String>
 
+    @FormUrlEncoded
+    @POST("index.php")
+    fun konfirmasiKodeAkun(
+        @Field("fun") functions: String,
+        @Field("username") username: String,
+        @Field("kode") kode: String): Call<String>
+
 }

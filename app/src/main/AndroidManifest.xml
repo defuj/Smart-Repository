@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="id.deadlock.smartrepository"
     android:versionCode="10"
-    android:versionName="1.0 Beta 6">
+    android:versionName="1.0 Beta 7">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />

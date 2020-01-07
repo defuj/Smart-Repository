@@ -61,6 +61,7 @@ class AdapterListVerifikasiAkun (private val context: Context, private val akun:
                                     val jsonresponse = response.body()
                                     val jsonObject = JSONObject(jsonresponse!!)
                                     if(jsonObject.optBoolean("result")){
+                                        akun[position].statusVerif = true
                                         val dialogBuilder2 = AlertDialog.Builder(context)
                                         dialogBuilder2.setTitle("Kode Verifikasi")
                                         dialogBuilder2.setMessage(jsonObject.optString("kode"))

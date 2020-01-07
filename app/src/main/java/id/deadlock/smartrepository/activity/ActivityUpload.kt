@@ -1,6 +1,7 @@
 package id.deadlock.smartrepository.activity
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -11,7 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.dataCache
+import id.deadlock.smartrepository.network.ApiServices
+import kotlinx.android.synthetic.main.activity_upload.*
+import net.gotev.uploadservice.MultipartUploadRequest
+import net.gotev.uploadservice.UploadNotificationConfig
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ActivityUpload : AppCompatActivity() {
     private var cache : SharedPreferences? = null
@@ -24,8 +31,13 @@ class ActivityUpload : AppCompatActivity() {
     private var spinnerJenisKaryaTulis : Spinner? = null
     private var namaFile : TextView? = null
     private var ukuranFile : TextView? = null
-
+    private var pd: ProgressDialog? = null
+    private var uriFile : Uri? = null
     private var jenisDokumen = "Artikel"
+
+    private var PdfNameHolder : String? = null
+    private var PdfPathHolder : String? = null
+    private var PdfID : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +72,7 @@ class ActivityUpload : AppCompatActivity() {
         hapusUpload!!.setOnClickListener {
             uploadBefore!!.visibility = View.VISIBLE
             uploadAfter!!.visibility = View.GONE
+            namaFile!!.text = ""
         }
 
         spinnerJenisKaryaTulis!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -76,6 +89,44 @@ class ActivityUpload : AppCompatActivity() {
 
             }
         }
+
+        btnUnggah!!.setOnClickListener {
+            if(jenisDokumen.isNotEmpty()){
+                if(namaFile!!.text.isNotEmpty()){
+                    if(jenisDokumen == "Artikel"){
+                        if(editAbstrak!!.text.isNotEmpty()){
+                            //upload
+                            uploadDokumen()
+                        }else{
+                            Toast.makeText(this,"Abstrak tidak boleh kosong.",Toast.LENGTH_SHORT).show()
+                        }
+                    }else{
+                        //upload
+                        uploadDokumen()
+                    }
+                }else{
+                    Toast.makeText(this,"Harap pilih dokumen untuk diunggah.",Toast.LENGTH_SHORT).show()
+                }
+            }else {
+                Toast.makeText(this,"Harap pilih jenis dokumen.",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun uploadDokumen() {
+        pd = ProgressDialog(this, R.style.DialogTheme)
+        pd!!.setCancelable(false)
+        pd!!.show()
+
+        PdfID = UUID.randomUUID().toString()
+        //PdfPathHolder = FilePa
+        val PDF_UPLOAD_HTTP_URL = "${ApiServices.URL}index.php?fun=upload"
+        MultipartUploadRequest(this,PdfID,PDF_UPLOAD_HTTP_URL)
+            .addFileToUpload("","pdf")
+            .addParameter("","")
+            .setNotificationConfig(UploadNotificationConfig())
+            .setMaxRetries(5)
+            .startUpload()
     }
 
     private fun pilihFile() {
@@ -90,6 +141,8 @@ class ActivityUpload : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && data != null){
             val uri : Uri = data.data!!
+            uriFile = data.data!!
+
             val file = File(uri.path.toString())
             val fileInputStream = applicationContext.contentResolver.openInputStream(uri)
             val fileSize = "${fileInputStream!!.available()} byte" //file.length()/1024
@@ -105,7 +158,7 @@ class ActivityUpload : AppCompatActivity() {
     private fun showJenisDokumen() {
         val spinnerArray = ArrayList<String>()
         spinnerArray.clear()
-        if(cache!!.getString(dataCache.akses,"user") == "admin"){
+        if(cache!!.getString(dataCache.akses,"user") == "Admin"){
             spinnerArray.add("Artikel")
             spinnerArray.add("Skripsi")
             spinnerArray.add("Tugas Akhir")

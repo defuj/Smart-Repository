@@ -38,6 +38,7 @@
             android:paddingBottom="6dp">
 
             <TextView
+                android:id="@+id/txtNamaPendaftar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -47,7 +48,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/txtEmailPendaftar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"

@@ -2,6 +2,8 @@ package id.deadlock.smartrepository.activity
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +12,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
 import id.deadlock.smartrepository.adapter.adapterContentDashboard.AdapterListVerifikasiAkun
 import id.deadlock.smartrepository.model.ModelListVerifikasiAKun
+import id.deadlock.smartrepository.network.ApiServices
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ActivityVerfikasiAkun : AppCompatActivity() {
 
@@ -29,11 +38,16 @@ class ActivityVerfikasiAkun : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbarVerifikasiAkun)
         refresh= findViewById(R.id.refreshVerifikasiAkun)
         recycler = findViewById(R.id.recyclerVerifikasiAkun)
+        recycler!!.visibility = View.GONE
 
         runFunction()
     }
 
     private fun runFunction() {
+        toolbar!!.setNavigationOnClickListener {
+            finish()
+        }
+
         refresh!!.setOnRefreshListener {
             object : CountDownTimer(2000, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
@@ -53,21 +67,47 @@ class ActivityVerfikasiAkun : AppCompatActivity() {
     private fun loadList(){
         akun = ArrayList()
         akun!!.clear()
-        recycler!!.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL,false)
+        recycler!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
-        for(i in 0 until 2){
-            val modelAkun = ModelListVerifikasiAKun()
-            modelAkun.nama = "Nama Pendaftar $i"
-            modelAkun.email = "A$i.1700029@mhs.stmik-sumedang.ac.id"
-            modelAkun.nim = "$i"
-            akun!!.add(modelAkun)
-        }
-        val adapter =
-            AdapterListVerifikasiAkun(
-                this,
-                akun!!
-            )
-        recycler!!.adapter = adapter
+        val retrofit = Retrofit.Builder()
+            .baseUrl(ApiServices.URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build()
+        val api = retrofit.create(ApiServices::class.java)
+        val call = api.listAkun("AkunNonVerif")
+        call.enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(this@ActivityVerfikasiAkun,"Koneksi Bermasalah.",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        val jsonresponse = response.body()
+                        val jsonObject = JSONObject(jsonresponse!!)
+                        if(jsonObject.optInt("jml") > 0){
+                            recycler!!.visibility = View.VISIBLE
+                            val dataArray = jsonObject.getJSONArray("akun")
+                            for (i in 0 until dataArray.length()) {
+                                val dataobj = dataArray.getJSONObject(i)
+                                val modelAkun = ModelListVerifikasiAKun()
+                                modelAkun.username = dataobj.getString("username")
+                                modelAkun.nama = dataobj.getString("nama")
+                                modelAkun.email = dataobj.getString("email")
+                                modelAkun.tglDaftar = dataobj.getString("tgl_daftar")
+                                modelAkun.statusVerif = dataobj.getBoolean("status_verif")
+                                akun!!.add(modelAkun)
+                            }
+                            val adapter = AdapterListVerifikasiAkun(this@ActivityVerfikasiAkun, akun!!)
+                            recycler!!.adapter = adapter
+                        }else{
+                            recycler!!.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+
+        })
+
     }
 }

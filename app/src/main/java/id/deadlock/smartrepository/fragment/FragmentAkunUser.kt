@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.deadlock.smartrepository.R
+import id.deadlock.smartrepository.activity.ActivityGantiSandi
 import id.deadlock.smartrepository.activity.ActivitySign
 import id.deadlock.smartrepository.activity.ActivityUpload
 import id.deadlock.smartrepository.adapter.adapterContentHome.AdapterListCari
@@ -98,7 +99,7 @@ class FragmentAkunUser : Fragment() {
         toolbar!!.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.menu_keluar-> keluar()
-                R.id.menu_ganti_sandi-> Toast.makeText(activity,"Mengganti", Toast.LENGTH_SHORT).show()
+                R.id.menu_ganti_sandi-> startActivity(Intent(activity!!,ActivityGantiSandi::class.java))
             }
             true
         }

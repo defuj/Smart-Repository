@@ -25,9 +25,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ActivityGantiSandi"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Full"
-            android:name=".activity.ActivityListKaryaTulis"/>
+            android:theme="@style/AppTheme.Full"/>
+        <activity
+            android:name=".activity.ActivityListKaryaTulis"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Full" />
         <activity
             android:name=".activity.ActivityDetailArtikel"
             android:configChanges="orientation|keyboardHidden|screenSize"

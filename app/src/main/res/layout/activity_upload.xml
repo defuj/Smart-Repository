@@ -200,6 +200,7 @@
                 android:textSize="14sp"
                 android:textColor="@android:color/black"/>
             <EditText
+                android:id="@+id/editJudulKaryaTulis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_form_upload"
@@ -224,6 +225,7 @@
                     android:textSize="14sp"
                     android:textColor="@android:color/black"/>
                 <EditText
+                    android:id="@+id/editAbstrak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="200dp"
@@ -244,8 +246,10 @@
                 android:layout_height="wrap_content"
                 android:text="Penulis"
                 android:textSize="14sp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                android:visibility="gone"/>
             <EditText
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_form_upload"
@@ -263,7 +267,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="top"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                android:visibility="gone">
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="wrap_content"
@@ -283,9 +288,9 @@
                 android:id="@+id/btnUnggah"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:background="@drawable/button_gradient"
-                android:text="Unggah Artikel"
+                android:text="Unggah"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />

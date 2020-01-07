@@ -74,6 +74,8 @@ dependencies {
     implementation 'com.mindorks.android:prdownloader:0.6.0'
     implementation 'com.github.Plumillon:ChipView:1.2.0'
 
+    implementation 'net.gotev:uploadservice:2.1'
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

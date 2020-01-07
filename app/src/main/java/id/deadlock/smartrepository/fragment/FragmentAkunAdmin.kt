@@ -17,10 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.deadlock.smartrepository.R
-import id.deadlock.smartrepository.activity.ActivityHome
-import id.deadlock.smartrepository.activity.ActivitySign
-import id.deadlock.smartrepository.activity.ActivityUpload
-import id.deadlock.smartrepository.activity.ActivityVerfikasiAkun
+import id.deadlock.smartrepository.activity.*
 import id.deadlock.smartrepository.adapter.adapterContentDashboard.AdapterListDashboard
 import id.deadlock.smartrepository.dataCache
 import id.deadlock.smartrepository.model.ModelListDashboard
@@ -71,7 +68,7 @@ class FragmentAkunAdmin : Fragment() {
         toolbar!!.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.menu_keluar-> keluar()
-                R.id.menu_ganti_sandi-> Toast.makeText(activity,"Mengganti", Toast.LENGTH_SHORT).show()
+                R.id.menu_ganti_sandi-> startActivity(Intent(activity!!, ActivityGantiSandi::class.java))
             }
             true
         }

@@ -86,4 +86,15 @@ interface ApiServices {
         @Field("nomor_induk") nomor_induk: String,
         @Field("limit") limit: Int): Call<String>
 
+    @FormUrlEncoded
+    @POST("index.php")
+    fun listAkun(
+        @Field("fun") functions: String): Call<String>
+
+    @FormUrlEncoded
+    @POST("index.php")
+    fun verifikasiAkun(
+        @Field("fun") functions: String,
+        @Field("username") username: String): Call<String>
+
 }
